@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="anti_terrorist.aspx.cs" Inherits="anti_terrorist" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="PCRCallsTarget.aspx.cs" Inherits="PCRCallsTarget" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server"></asp:Content>
 
@@ -93,10 +93,11 @@
 
         <div class="row">
             <div class="col-md-12">
+                
                 <div class="box box-info">
-                    <h3 class="box-title" style="margin-left: 15px;">Anti Terrorist Measures</h3>
+                    <h3 class="box-title" style="margin-left: 15px;">PCR Calls Weekly Target</h3>
                     <div class="box-header with-border">
-                        <h3 class="box-title">Anti Terrorist Measures</h3>
+                        <h3 class="box-title">PCR Calls Weekly Target</h3>
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse">
                                 <i class="fa fa-minus"></i>
@@ -104,18 +105,35 @@
                             <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                         </div>
                     </div>
-                    <div class="box-body">
-
-                        <div class="table-responsive">
-
-                            <asp:GridView ID="GridView1" runat="server" OnPageIndexChanging="GridView1_PageIndexChanging" ForeColor="Black" HeaderStyle-BackColor="#0066cc" Width="100%">
-                                <PagerStyle HorizontalAlign="Right" Width="100%" CssClass="GridPager" />
-                            </asp:GridView>
-                        </div>
-                    </div>
                     
+                    <!-- New style of grid view is added here with edit functionality -->
+                     <div class="box" style="width: 98%; margin-left: 2%; margin-top: 0%; margin-right: 1%; margin-bottom: 5%">
+                        
+        <asp:GridView ID="GridView3" Style="width: 100%; margin-left: 0%;" AutoGenerateColumns="False" DataKeyNames="id" 
+            runat="server" OnRowCommand="GridView3_RowCommand" AllowSorting="True" CellPadding="4" GridLines="None" ShowFooter="False">
+            <PagerStyle HorizontalAlign="Right" Width="100%" CssClass="box yagya" />
+            <Columns>
+                <asp:TemplateField HeaderText="S.No." ItemStyle-Width="1">
+                    <ItemTemplate>
+                        <asp:Label ID="lblRowNumber" Text='<%# Container.DataItemIndex + 1 +"."%>' runat="server" />
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:BoundField DataField="id" HeaderText="id" ItemStyle-Width="8%"  Visible="false"/>
+                <asp:BoundField DataField="headId" HeaderText="headId" ItemStyle-Width="8%"  Visible="false"/>
+                <asp:BoundField DataField="headName" HeaderText="Head Name" />  
+                <asp:BoundField DataField="weekly_target" HeaderText="Weekly Target" />  
+                <asp:TemplateField HeaderText="Action" ItemStyle-Width="10%" >
+                    <ItemTemplate>
+                        <a href='PCRCallsTarget1.aspx?id=<%# Eval("id") %>&headId=<%# Eval("headId") %>'>
+                            <img src="images/edit.ico" style="height: 20px; margin-right: 20px; width: 20px;" title="Edit" />
+                        </a>
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>
+    </div>
                 </div>
-                    
+
             </div>
         </div>
 

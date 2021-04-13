@@ -126,7 +126,7 @@
                 <asp:TemplateField HeaderText="Action" ItemStyle-Width="10%" >
                     <ItemTemplate>
                         <a href='Hotspots1.aspx?HotSpotCode=<%# Eval("hotspot_code") %>'>
-                               <img src="images/edit.ico" style="height: 20px; margin-right: 20px; width: 20px;" title="Edit" />
+                            <img src="images/edit.ico" style="height: 20px; margin-right: 20px; width: 20px;" title="Edit" />
                         </a>
                         <asp:LinkButton ToolTip="Delete" ID="R1" runat="server" CommandArgument='<%# Eval("hotspot_code") %>' OnClientClick="return confirm('Are you sure to remove this Delivery?');" CommandName="Deletes"><img src="images/Delete_icon.png" style="height: 20px;width: 20px;" /> </asp:LinkButton>
                     </ItemTemplate>
