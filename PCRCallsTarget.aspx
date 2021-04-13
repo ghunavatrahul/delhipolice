@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="Hotspots.aspx.cs" Inherits="Hotspots" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="PCRCallsTarget.aspx.cs" Inherits="PCRCallsTarget" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder3" runat="Server"></asp:Content>
 
@@ -95,9 +95,9 @@
             <div class="col-md-12">
                 
                 <div class="box box-info">
-                    <h3 class="box-title" style="margin-left: 15px;">Hot Spots</h3>
+                    <h3 class="box-title" style="margin-left: 15px;">PCR Calls Weekly Target</h3>
                     <div class="box-header with-border">
-                        <h3 class="box-title">Hot Spots</h3>
+                        <h3 class="box-title">PCR Calls Weekly Target</h3>
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse">
                                 <i class="fa fa-minus"></i>
@@ -108,9 +108,8 @@
                     
                     <!-- New style of grid view is added here with edit functionality -->
                      <div class="box" style="width: 98%; margin-left: 2%; margin-top: 0%; margin-right: 1%; margin-bottom: 5%">
-                        <div class="btn btn-box-tool text-bold"><h4>Robbery/Snatching/MVT/Pick-Pocketing/Eve-Teasing</h4></div>
-        <asp:Button ID="btnAdd" class="btn btn-info pull-right" runat="server" Text="Add Hotspot" Style="margin-right:5%; background-color:#117A65;" OnClick="btnAdd_Click" />    
-        <asp:GridView ID="GridView3" Style="width: 100%; margin-left: 0%;" AutoGenerateColumns="False" DataKeyNames="hotspot_code" 
+                        
+        <asp:GridView ID="GridView3" Style="width: 100%; margin-left: 0%;" AutoGenerateColumns="False" DataKeyNames="id" 
             runat="server" OnRowCommand="GridView3_RowCommand" AllowSorting="True" CellPadding="4" GridLines="None" ShowFooter="False">
             <PagerStyle HorizontalAlign="Right" Width="100%" CssClass="box yagya" />
             <Columns>
@@ -119,16 +118,15 @@
                         <asp:Label ID="lblRowNumber" Text='<%# Container.DataItemIndex + 1 +"."%>' runat="server" />
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="hotspot_code" HeaderText="hotspot_code" ItemStyle-Width="8%"  Visible="false"/>
-                <asp:BoundField DataField="location_area" HeaderText="Location/Area" />  
-                <asp:BoundField DataField="beat_number" HeaderText="Affected Beats Nos." />  
-                <asp:BoundField DataField="division_beat_officer" HeaderText="Division/Beat Officer" /> 
+                <asp:BoundField DataField="id" HeaderText="id" ItemStyle-Width="8%"  Visible="false"/>
+                <asp:BoundField DataField="headId" HeaderText="headId" ItemStyle-Width="8%"  Visible="false"/>
+                <asp:BoundField DataField="headName" HeaderText="Head Name" />  
+                <asp:BoundField DataField="weekly_target" HeaderText="Weekly Target" />  
                 <asp:TemplateField HeaderText="Action" ItemStyle-Width="10%" >
                     <ItemTemplate>
-                        <a href='Hotspots1.aspx?HotSpotCode=<%# Eval("hotspot_code") %>'>
+                        <a href='PCRCallsTarget1.aspx?id=<%# Eval("id") %>&headId=<%# Eval("headId") %>'>
                             <img src="images/edit.ico" style="height: 20px; margin-right: 20px; width: 20px;" title="Edit" />
                         </a>
-                        <asp:LinkButton ToolTip="Delete" ID="R1" runat="server" CommandArgument='<%# Eval("hotspot_code") %>' OnClientClick="return confirm('Are you sure to remove this Delivery?');" CommandName="Deletes"><img src="images/Delete_icon.png" style="height: 20px;width: 20px;" /> </asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

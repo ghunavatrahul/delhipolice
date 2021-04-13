@@ -11,7 +11,7 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Pickets1 : System.Web.UI.Page
+public partial class PicketDetails1 : System.Web.UI.Page
 {
     string Employeeid;
     int PSCode;
@@ -24,9 +24,28 @@ public partial class Pickets1 : System.Web.UI.Page
         }
         if (!IsPostBack)
         {
+            BindPicketType();
             LoadPicket();
         }
     }
+
+    protected void BindPicketType()
+    {
+        string s = "select id,picket_type from dbo.picket_order  union " +
+                   " select 999 as id,'Add New Type' as picket_type order by id ";
+        DataBase db = new DataBase();
+        DataTable tb = db.ExcutesQuery(s);
+        ddlPicketType.Items.Clear();
+        if (tb.Rows.Count > 0)
+        {
+            ddlPicketType.DataSource = tb;
+            ddlPicketType.DataValueField = "id";
+            ddlPicketType.DataTextField = "picket_type";
+            ddlPicketType.DataBind();
+            ddlPicketType.Items.Insert(0, new ListItem("--Select Picket Type", " "));
+        }
+    }
+
     public void LoadPicket()
     {
         try
@@ -169,6 +188,4 @@ public partial class Pickets1 : System.Web.UI.Page
         }
     }
 
-
-    
 }
