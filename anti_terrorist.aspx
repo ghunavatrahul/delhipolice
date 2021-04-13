@@ -104,49 +104,15 @@
                             <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                         </div>
                     </div>
-                   
+                    <div class="box-body">
 
-                       <!-- New style of grid view is added here with edit functionality -->
-                     <div class="box" style="width: 98%; margin-left: 2%; margin-top: 0%; margin-right: 1%; margin-bottom: 5%">
-                        <div class="btn btn-box-tool text-bold"><h4>Anti Terrorist Measures</h4></div>
-        <asp:Button ID="btnAdd" class="btn btn-info pull-right" runat="server" Text="Add Head" Style="margin-right:5%; background-color:#117A65;" OnClick="btnAdd_Click" />    
-        <asp:GridView ID="GridView1" Style="width: 100%; margin-left: 0%;" AutoGenerateColumns="False" DataKeyNames="head_id" 
-            runat="server" OnRowCommand="GridView1_RowCommand" AllowSorting="True" CellPadding="4" GridLines="None" ShowFooter="False">
-            <PagerStyle HorizontalAlign="Right" Width="100%" CssClass="box yagya" />
+                        <div class="table-responsive">
 
-
-
-
-            <Columns>
-              <asp:TemplateField HeaderText="S.No." ItemStyle-Width="1">
-                    <ItemTemplate>
-                        <asp:Label ID="lblRowNumber" Text='<%# Container.DataItemIndex + 1 +"."%>' runat="server" />
-                    </ItemTemplate>
-                </asp:TemplateField>
-
-                <asp:BoundField DataField="head_id" HeaderText="head_id" ItemStyle-Width="8%"  Visible="false"/>
-                <asp:BoundField DataField="head" HeaderText="Head" />  
-                <asp:BoundField DataField="totalnumber" HeaderText="Total Number" />  
-                <asp:BoundField DataField="targetofday" HeaderText="Target of Day" /> 
-                <asp:BoundField DataField="targetofweek" HeaderText="Target of week" />
-                <asp:BoundField DataField="checkduringday" HeaderText="Checked During Day" />
-                <asp:BoundField DataField="checkduringweek" HeaderText="Checked During Week" />
-                <asp:BoundField DataField="cases" HeaderText="Cases" />
-                <asp:BoundField DataField="dpact" HeaderText="DP Act" />
-
-
-            <asp:TemplateField HeaderText="Action" ItemStyle-Width="10%" >
-             <ItemTemplate>
-                        <a href='bcs1.aspx?BeatId=<%# Eval("head_id") %>'>
-                            <img src="images/edit.ico" style="height: 20px; margin-right: 20px; width: 20px;" title="Edit" />
-                        </a>
-                        <asp:LinkButton ToolTip="Delete" ID="R1" runat="server" CommandArgument='<%# Eval("head_id") %>' OnClientClick="return confirm('Are you sure to remove this Delivery?');" CommandName="Deletes"><img src="images/Delete_icon.png" style="height: 20px;width: 20px;" /> </asp:LinkButton>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                </Columns>
-            </asp:GridView>
-
-            </div>
+                            <asp:GridView ID="GridView1" runat="server" OnPageIndexChanging="GridView1_PageIndexChanging" ForeColor="Black" HeaderStyle-BackColor="#0066cc" Width="100%">
+                                <PagerStyle HorizontalAlign="Right" Width="100%" CssClass="GridPager" />
+                            </asp:GridView>
+                        </div>
+                    </div>
                     
                 </div>
                     
