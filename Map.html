@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Directions service</title>
+    <style>
+         /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+         #map {
+             height: 100%;
+         }
+         /* Optional: Makes the sample page fill the window. */
+         html, body {
+             height: 100%;
+             margin: 0;
+             padding: 0;
+         }
+
+         #floating-panel {
+             position: absolute;
+             top: 10px;
+             left: 25%;
+             z-index: 5;
+             background-color: #fff;
+             padding: 5px;
+             border: 1px solid #999;
+             text-align: center;
+             font-family: 'Roboto','sans-serif';
+             line-height: 30px;
+             padding-left: 10px;
+         }
+    </style>
+</head>
+<body>
+    <div id="floating-panel">
+        <b>Start: </b>
+
+        <select id="start">
+            <option value="delhi, li">session.getAttribrute("PickupAddr")</option>
+            <option value="New Ashok Nagar, New Ashok Nagar Rd, Block B, Ashok Nagar Extension, New Ashok Nagar, New Delhi, Delhi 110096">New Ashok Nagar, New Ashok Nagar Rd, Block B, Ashok Nagar Extension, New Ashok Nagar, New Delhi, Delhi 110096</option>
+            <option value="gwalior">Gwalior</option>
+            <option value="noida, up">Noida City</option>
+            <option value="noida sector-18, up">Noida Sector-18</option>
+            <option value="gorakpur, up">Gorakpur</option>
+            <option value="gurgaon, hr">Gurgaon</option>
+            <option value="udaipur, raj">Udaipur</option>
+            <option value="amritsar, punjab">Amritsar</option>
+            <option value="bhatinda, punjab">Bhatinda</option>
+            <option value="morena, mp">Morena</option>
+            <option value="Renukoot District Sonebhadra, UP">Renukoot</option>
+        </select>
+        <b>End: </b>
+        <select id="end">
+            <option value="noida, up">Noida</option>
+            <option value="gorakpur, up">Gorakpur</option>
+            <option value="gwalior, mp">Gwalior, MP</option>
+            <option value="G-16, 2nd Floor, Sector-3,Noida - 201301 3, up">G-16, 2nd Floor, Sector-3,Noida - 201301</option>
+            <option value="jaipur, raj">Jaipur</option>
+            <option value="udaipur, raj">Udaipur</option>
+            <option value="panipat, hr">Panipat</option>
+            <option value="faridabad, hr">Faridabad</option>
+            <option value="bhopal, mp">Bhopal</option>
+            <option value="indore, mp">Indore</option>
+            <option value="morena, mp">Morena</option>
+            <option value="agra, up">Agra</option>
+            <option value="Varanasi, UP">Varanasi</option>
+        </select>
+    </div>
+    <div id="map"></div>
+    <script>
+        function initMap() {
+            var directionsService = new google.maps.DirectionsService;
+            var directionsDisplay = new google.maps.DirectionsRenderer;
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 7,
+                center: { lat: 26.2182871, lng: 78.1828308 }
+            });
+            directionsDisplay.setMap(map);
+
+            var onChangeHandler = function () {
+                calculateAndDisplayRoute(directionsService, directionsDisplay);
+            };
+            document.getElementById('start').addEventListener('change', onChangeHandler);
+            document.getElementById('end').addEventListener('change', onChangeHandler);
+        }
+
+        function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+            directionsService.route({
+                origin: document.getElementById('start').value,
+                destination: document.getElementById('end').value,
+                travelMode: 'DRIVING'
+            }, function (response, status) {
+                if (status === 'OK') {
+                    directionsDisplay.setDirections(response);
+                } else {
+                    window.alert('Directions request failed due to ' + status);
+                }
+            });
+        }
+
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBnGYh38VLomSH156Y1rvh9jB-OYpXlZo&callback=initMap">
+    </script>
+    <script>
+        var onChangeHandler = function () {
+            calculateAndDisplayRoute(directionsService, directionsDisplay);
+        };
+    </script>
+    <script type="text/javascript">
+        var t = '@Request.RequestContext.HttpContext.Session["PickupAddr"]';
+       
+        
+        alert(t);
+    </script>
+</body>
+</html>

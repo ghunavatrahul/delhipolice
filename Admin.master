@@ -1,0 +1,187 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Admin.master.cs" Inherits="Admin_Admin" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Field Work Management</title>
+
+    <link rel="shortcut icon" href="images/employment-icon.png">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/AdminLTE.min.css" />
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css" />
+    <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" />
+    <style>
+        .skin-blue .treeview-menu > li > a {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <form id="form1" runat="server">
+        <div class="wrapper">
+
+            <header class="main-header">
+                <!-- Logo -->
+                <a href="Home_new.aspx" style="width: 20%;" class="logo">
+                    <!-- mini logo for sidebar mini 50x50 pixels -->
+                    <span class="logo-mini"><b>Delhi Police - Rohini District</b> Management</span>
+                    <!-- logo for regular state and mobile devices -->
+                    <span class="logo-lg"><b>Delhi Police</b> - Rohini District</span>
+                </a>
+                <!-- Header Navbar: style can be found in header.less -->
+                <nav class="navbar navbar-static-top" style="margin-left: 20%;">
+                    <!-- Sidebar toggle button-->
+                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                    </a>
+
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav" style="margin-bottom: -14px;">
+                            <!-- Messages: style can be found in dropdown.less-->
+                            <li class="dropdown user user-menu" id="SetPro">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <%--<img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">--%>
+                                    <span class="hidden-xs">
+                                        <asp:Label ID="lblname" runat="server" Text=""></asp:Label></span>
+                                    <%--<span class="hidden-xs"><h5><asp:Label ID="lblrole" runat="server" Text=""></h5></asp:Label></span>--%>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- User image -->
+
+                                    <asp:Repeater ID="RepRole" runat="server" OnItemCommand="RepRole_ItemCommand">
+                                       <%-- <ItemTemplate>
+                                            <li class="user-header">
+                                                <asp:LinkButton ID="lnkEdit" CssClass="role" runat="server" CommandName="role" CommandArgument='<%# Eval("role_name") %>'><%# Eval("role_name") %></asp:LinkButton></li>
+                                            <li class="user-header"> <a id="anchorRole" runat="server" onclick="anchorRole_click"> <%# Eval("role_name")%></a></li>
+                                        </ItemTemplate>--%>
+                                    </asp:Repeater>
+                                    <li class="user-header">
+                                        <p>
+                                            <small>
+                                                <asp:Button ID="btnChangepsswd" runat="server"  class="btn btn-default btn-flat" Text="Change Password" OnClick="btnChangepsswd_Click" Style="width:80%; margin-top: -1%;"></asp:Button>
+                                        </p>
+                                        <p> <asp:Button ID="btnprofile" runat="server" class="btn btn-default btn-flat" Text="Profile" OnClick="btnprofile_Click" Style="margin-top: -1%; width:80%;"></asp:Button></p>
+                                  <p> <asp:Button ID="btnsignout" runat="server" class="btn btn-default btn-flat" Text="Sign out" OnClick="btnsignout_Click" Style="width:80%; margin-top: -1%;"></asp:Button></p>
+                                        </small>
+                                        </li>
+
+                                    <!-- Menu Footer-->
+                                    <li class="user-footer">
+                                        <div class="pull-left">
+                                           
+                                        </div>
+                                        <div class="pull-right">
+                                           
+                                             <%--<a href="" id="linksignout" runat="server" class="btn btn-default btn-flat" onclick="linksignout_Click">Sign out</a>--%>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <aside style="width: 20%;" class="main-sidebar">
+                <section class="sidebar">
+                    <div class="user-panel" style="display: none;">
+                        <div class="pull-left image">
+                            <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        </div>
+                        <div class="pull-left info">
+                            <p>
+                                <asp:Label ID="lblname1" runat="server" Text=""></asp:Label>
+                            </p>
+                            <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
+                        </div>
+                    </div>
+                    
+                    <ul class="sidebar-menu">
+                        <li class="active treeview">
+                            <a href="#">
+                                <i class="fa fa-dashboard"></i><span>Dashboard</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a></li>
+                           <%-- <ul class="treeview-menu">--%>
+                                <asp:Repeater ID="RepMenu" runat="server" OnItemDataBound="RepMenu_ItemDataBound" >
+                                    <ItemTemplate>
+                                        <li class="treeview"><a href='<%# Eval("Name") %>.aspx'><i class="fa fa-circle-o"></i><%# Eval("Page_Name") %></a>
+                                            <asp:Label ID="lblID" runat="server" Text='<%# Eval("Page") %>' Visible="false" />                                           
+                                                <asp:Repeater ID="Repmenu1" runat="server">
+                                                    <HeaderTemplate>
+                                                        <ul class="treeview-menu">
+                                                    </HeaderTemplate>
+                                                    <ItemTemplate>
+                                                        <li class="active"><a href='<%# Eval("Name") %>.aspx'><i class="fa fa-circle-o"></i><%# Eval("Page_name") %></a></li>
+                                                    </ItemTemplate>
+                                                    <FooterTemplate>
+                                                        </ul>
+                                                    </FooterTemplate>
+                                                </asp:Repeater>                                
+                                            <%--</ul>--%>
+                                       </li>
+                                    </ItemTemplate>
+                                </asp:Repeater>                                                                   
+                            </ul>                            
+                        <%--</li>
+                    </ul>--%>
+                </section>
+            </aside>
+            <div class="content-wrapper">
+                <section class="content-header">
+                    <h1 style="margin-left: 6.5%;">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server" />
+                        <small></small>
+                    </h1>
+                </section>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+
+                <aside class="control-sidebar control-sidebar-dark">
+                    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+                        <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+                        <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+                    </ul>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server"></asp:ContentPlaceHolder>
+                </aside>
+                <div class="control-sidebar-bg"></div>
+            </div>
+        </div>
+        <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="dist/js/app.min.js"></script>
+        <script src="dist/js/demo.js"></script>
+
+    </form>
+    <script type="text/javascript">
+
+        $("body").delegate("#SetPro", "click", function () {
+            var roleName = $("#showrole").html();
+            var classes = $(".role");
+
+            for (var i = 0; i < classes.length; i++) {
+                var list = $(".role:eq(" + [i] + ")").html();
+                if (list == roleName) {
+                    $(".role:eq(" + [i] + ")").attr({ 'style': 'background-color:#e1e3e9;    color: #333;' });
+                    break;
+                }
+            }
+
+        });
+    </script>
+</body>
+</html>
