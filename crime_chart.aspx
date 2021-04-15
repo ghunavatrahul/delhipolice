@@ -109,7 +109,8 @@
                       <!-- New style of grid view is added here with edit functionality -->
                      <div class="box" style="width: 98%; margin-left: 2%; margin-top: 0%; margin-right: 1%; margin-bottom: 5%">
                         <div class="btn btn-box-tool text-bold"><h4>STATEMENT OF CRIME NORTH DISTRICT DATED</h4></div>
-        <asp:Button ID="btnAdd" class="btn btn-info pull-right" runat="server" Text="Add Head" Style="margin-right:5%; background-color:#117A65;" OnClick="btnAdd_Click" />    
+        <asp:Button ID="btnAdd" class="btn btn-info pull-right" runat="server" Text="Add Head" Style="margin-right:5%; background-color:#117A65;" OnClick="btnAdd_Click" />  
+        <div  style="max-width:inherit; overflow-x:scroll;">
         <asp:GridView ID="GridView1" Style="width: 100%; margin-left: 0%;" AutoGenerateColumns="False" DataKeyNames="head_id" 
             runat="server" OnRowCommand="GridView1_RowCommand" AllowSorting="True" CellPadding="4" GridLines="None" ShowFooter="False">
             <PagerStyle HorizontalAlign="Right" Width="100%" CssClass="box yagya" />
@@ -154,7 +155,7 @@
             </div>
                     
                 </div>
-                    
+               </div>     
             </div>
         </div>
 

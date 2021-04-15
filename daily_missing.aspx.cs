@@ -18,17 +18,17 @@ public partial class daily_missing : System.Web.UI.Page
         DailyReport();
     }
 
-    protected void btnAdd_Click(object sender, EventArgs e)
+    protected void btnAdd1_Click(object sender, EventArgs e)
     {
         Response.Redirect("daily_missing1.aspx");
     }
 
-    protected void btnAdd1_Click(object sender, EventArgs e)
+    protected void btnAdd2_Click(object sender, EventArgs e)
     {
         Response.Redirect("daily_missing2.aspx");
     }
 
-    protected void btnAdd2_Click(object sender, EventArgs e)
+    protected void btnAdd3_Click(object sender, EventArgs e)
     {
         Response.Redirect("daily_missing3.aspx");
     }
@@ -49,10 +49,7 @@ public partial class daily_missing : System.Web.UI.Page
 
     public void DailyChild()
     {
-        string Query = "select beat_id,pcrmale as 'PCR Call Male',pcrfemale as 'PCR Call Female',ddmale as 'DD Entry Male',ddfemale as 'DD Entry Female',totalmale as 'Total Male'," +
-                       "totalfemale as 'Total Female',tracedmale as 'Traced Male',tracedfemale as 'Traced Female',casemale as 'Case Register Male',casefemale as 'Case Register Female'," +
-                       "pendingmale as 'Pending Male',pendingfemale as 'Pending Female',reasonmale as 'Reason Male',reasonfemale as 'Reason Female'" +
-                       "from FieldWorkMgt_DB.dbo.daily_missing_child where ps_code=" + PSCode;
+        string Query = "select beat_id,pcrmale,pcrfemale,ddmale,ddfemale,totalmale,totalfemale,tracedmale,tracedfemale,casemale,casefemale,pendingmale,pendingfemale,reasonmale,reasonfemale from FieldWorkMgt_DB.dbo.daily_missing_child where ps_code=" + PSCode;
         SqlConnection con = new SqlConnection(str);
         SqlCommand com = new SqlCommand(Query, con);
         SqlDataAdapter sda = new SqlDataAdapter(com);
@@ -65,11 +62,7 @@ public partial class daily_missing : System.Web.UI.Page
 
     public void DailyReport()
     {
-        string Query = "select beat_id,childreportedmale as 'Child Reported Male',childreportedfemale as 'Child Reported Female',childreporttotal as 'Child Reported Total'," +
-                       "childtracedmale as 'Child Traced Male',childtracedfemale as 'Child Traced Female',childtracedtotal as 'Child Traced Total',totalmissingmale as 'Total Missing Male'," +
-                       "totalmissingfemale as 'Total Missing Female',totaltracedmale as 'Total Traced Male',totaltracedfemale as 'Total Traced Female',untraced as 'Untraced',missinguploadzipnet as 'Whether Missing Uploaded on Zip Net'," +
-                       "tracinguploadzipnet as 'Whether tracing Uploaded on Zip Net',guidlinesfollowed as 'Whether guidelines laid down in SO and SOP followed',nearbyhospital as 'Nearby Hospitals /crowded places searched',effortmade as 'Efforte Made to Trace the victim'" +
-                       "from FieldWorkMgt_DB.dbo.daili_missing_report where ps_code=" + PSCode;
+        string Query = "select beat_id,childreportedmale,childreportedfemale,childreporttotal,childtracedmale,childtracedfemale,childtracedtotal,totalmissingmale,totalmissingfemale,totaltracedmale,totaltracedfemale,untraced,missinguploadzipnet,tracinguploadzipnet,guidlinesfollowed,nearbyhospital,effortmade from FieldWorkMgt_DB.dbo.daili_missing_report where ps_code=" + PSCode;
         SqlConnection con = new SqlConnection(str);
         SqlCommand com = new SqlCommand(Query, con);
         SqlDataAdapter sda = new SqlDataAdapter(com);
